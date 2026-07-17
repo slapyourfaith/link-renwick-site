@@ -1,134 +1,70 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400&display=swap');
-
-:root {
-    --text: #f3eee4;
-    --muted: rgba(243, 238, 228, 0.72);
-    --line: rgba(243, 238, 228, 0.28);
-}
-
-* {
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html,
-body {
-    margin: 0;
-    min-height: 100%;
-    background: #080b0f;
+body{
+    width:100%;
+    height:100%;
+    background:#000;
+    overflow:hidden;
+    font-family:Georgia, serif;
 }
 
-body {
-    font-family: "Inter", sans-serif;
-    color: var(--text);
+.hero{
+    width:100%;
+    height:100svh;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#000;
 }
 
-.hero {
-    position: relative;
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-    padding: 32px 20px;
-
-    background:
-        url("hero.jpg")
-        center center / cover
-        no-repeat;
+.hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center center;
+    display:block;
 }
 
-.overlay {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(3, 6, 10, 0.28),
-            rgba(3, 6, 10, 0.72)
-        ),
-        radial-gradient(
-            circle at center,
-            rgba(3, 6, 10, 0.02),
-            rgba(3, 6, 10, 0.58)
-        );
+.footer{
+
+    position:absolute;
+
+    bottom:14px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:rgba(255,255,255,.35);
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    text-shadow:0 0 8px rgba(0,0,0,.9);
+
+    user-select:none;
 }
 
-.content {
-    position: relative;
-    z-index: 1;
-    width: min(760px, 100%);
-    padding: 48px 28px;
-    text-align: center;
-    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.9);
-}
+/* Portrait Phones */
 
-.subtitle {
-    margin: 0 0 18px;
-    text-transform: uppercase;
-    letter-spacing: 0.38em;
-    font-size: clamp(0.66rem, 1.6vw, 0.82rem);
-    color: var(--muted);
-}
+@media (orientation:portrait){
 
-h1 {
-    margin: 0;
-    font-family: "Cinzel", serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: clamp(3rem, 10vw, 7rem);
-    line-height: 0.95;
-}
+    .hero img{
 
-.tagline {
-    margin: 24px 0 0;
-    font-family: "Cinzel", serif;
-    letter-spacing: 0.08em;
-    font-size: clamp(1rem, 3vw, 1.45rem);
-}
+        object-fit:contain;
 
-.release {
-    margin: 14px 0 0;
-    text-transform: uppercase;
-    letter-spacing: 0.28em;
-    font-size: clamp(0.68rem, 1.8vw, 0.88rem);
-    color: var(--muted);
-}
+        width:100%;
 
-.socials {
-    margin-top: 48px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px 24px;
-}
+        height:100%;
 
-.socials a {
-    color: var(--text);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 0.72rem;
-    padding-bottom: 5px;
-    border-bottom: 1px solid transparent;
-    transition:
-        border-color 180ms ease,
-        opacity 180ms ease;
-}
-
-.socials a:hover,
-.socials a:focus-visible {
-    border-color: var(--line);
-    opacity: 0.78;
-}
-
-@media (max-width: 560px) {
-    .content {
-        padding: 32px 8px;
     }
 
-    .socials {
-        margin-top: 36px;
-        gap: 14px 18px;
-    }
 }

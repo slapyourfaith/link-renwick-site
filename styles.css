@@ -1,70 +1,57 @@
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html,
-body{
-    width:100%;
-    height:100%;
-    background:#000;
-    overflow:hidden;
-    font-family:Georgia, serif;
+body {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
 }
 
-.hero{
-    width:100%;
-    height:100svh;
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#000;
+body {
+    min-height: 100vh;
+    min-height: 100svh;
 }
 
-.hero img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center center;
-    display:block;
+.hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    background: #000;
 }
 
-.footer{
-
-    position:absolute;
-
-    bottom:14px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    color:rgba(255,255,255,.35);
-
-    font-size:12px;
-
-    letter-spacing:2px;
-
-    text-shadow:0 0 8px rgba(0,0,0,.9);
-
-    user-select:none;
+.hero img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
 }
 
-/* Portrait Phones */
+.copyright {
+    position: absolute;
+    left: 50%;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    white-space: nowrap;
 
-@media (orientation:portrait){
+    color: rgba(255, 255, 255, 0.42);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-shadow: 0 1px 5px #000;
+}
 
-    .hero img{
-
-        object-fit:contain;
-
-        width:100%;
-
-        height:100%;
-
+/* Slightly adjust the crop on upright phones */
+@media (orientation: portrait) {
+    .hero img {
+        object-fit: cover;
+        object-position: 50% 50%;
     }
-
 }

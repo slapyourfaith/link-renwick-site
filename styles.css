@@ -7,17 +7,19 @@
 html,
 body {
     width: 100%;
+    height: 100%;
     background: #000;
 }
 
 body {
     min-height: 100vh;
     min-height: 100svh;
+    overflow: hidden;
 }
 
 .hero {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     height: 100svh;
     display: flex;
@@ -27,7 +29,7 @@ body {
     overflow: hidden;
 }
 
-.hero img {
+.hero-image {
     display: block;
     width: 100%;
     height: 100%;
@@ -35,35 +37,98 @@ body {
     object-position: center;
 }
 
-.signup-section {
-    width: 100%;
-    background: #0A0F17;
-    padding: 50px 20px 60px;
-    display: flex;
-    justify-content: center;
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
 }
 
-.signup-section .ml-embedded {
+.hero-overlay::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 42%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.45) 45%,
+        rgba(0, 0, 0, 0.88) 100%
+    );
+    pointer-events: none;
+}
+
+.signup {
+    position: absolute;
+    left: 50%;
+    bottom: max(48px, calc(env(safe-area-inset-bottom) + 38px));
+    transform: translateX(-50%);
+    width: min(92%, 440px);
+    z-index: 3;
+    pointer-events: auto;
+}
+
+.signup .ml-embedded {
     width: 100%;
-    max-width: 420px;
+    margin: 0 auto;
 }
 
 .copyright {
-    text-align: center;
-    color: rgba(255, 255, 255, 0.42);
+    position: absolute;
+    left: 50%;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    z-index: 3;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.48);
     font-family: Georgia, "Times New Roman", serif;
     font-size: 11px;
     letter-spacing: 0.12em;
-    padding: 20px;
-    background: #000;
+    text-shadow: 0 1px 5px #000;
+    pointer-events: none;
 }
 
 /* Upright phones: show the entire image */
 @media (orientation: portrait) {
-    .hero img {
+    .hero-image {
         width: 100%;
-        height: auto;
-        max-height: 100svh;
+        height: 100%;
         object-fit: contain;
+        object-position: center;
+    }
+
+    .signup {
+        width: min(92%, 400px);
+        bottom: max(50px, calc(env(safe-area-inset-bottom) + 40px));
+    }
+
+    .hero-overlay::before {
+        height: 48%;
+    }
+}
+
+/* Smaller phones */
+@media (max-width: 480px) {
+    .signup {
+        width: calc(100% - 28px);
+    }
+
+    .copyright {
+        font-size: 10px;
+    }
+}
+
+/* Short screens and landscape phones */
+@media (max-height: 650px) {
+    .signup {
+        bottom: max(38px, calc(env(safe-area-inset-bottom) + 30px));
+        transform: translateX(-50%) scale(0.9);
+        transform-origin: bottom center;
+    }
+
+    .copyright {
+        bottom: max(6px, env(safe-area-inset-bottom));
     }
 }

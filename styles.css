@@ -181,3 +181,232 @@ body {
         bottom: max(5px, env(safe-area-inset-bottom));
     }
 }
+/* =========================================
+   Thank-you / confirmation page
+   ========================================= */
+
+.thanks-page {
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #000;
+}
+
+.thanks-hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        max(40px, env(safe-area-inset-top))
+        20px
+        max(64px, calc(env(safe-area-inset-bottom) + 40px));
+
+    overflow: hidden;
+    background: #000;
+}
+
+.thanks-background {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    opacity: 0.55;
+}
+
+.thanks-shade {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.82) 75%
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.82)
+        );
+}
+
+.thanks-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(100%, 650px);
+    padding: clamp(28px, 5vw, 54px);
+
+    text-align: center;
+
+    color: #f5f0e6;
+    background: rgba(0, 0, 0, 0.68);
+
+    border: 1px solid rgba(213, 184, 119, 0.42);
+    border-radius: 4px;
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.7),
+        inset 0 0 40px rgba(255, 255, 255, 0.025);
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.thanks-eyebrow {
+    margin-bottom: 18px;
+
+    color: rgba(224, 198, 139, 0.9);
+
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.32em;
+}
+
+.thanks-content h1 {
+    margin-bottom: 12px;
+
+    font-size: clamp(42px, 8vw, 72px);
+    font-weight: normal;
+    line-height: 1;
+    letter-spacing: 0.04em;
+}
+
+.thanks-lead {
+    margin-bottom: 24px;
+
+    color: #dec58d;
+
+    font-size: clamp(18px, 4vw, 23px);
+    line-height: 1.45;
+}
+
+.thanks-content > p:not(.thanks-eyebrow):not(.thanks-lead):not(.thanks-closing) {
+    max-width: 530px;
+    margin: 0 auto;
+
+    color: rgba(255, 255, 255, 0.82);
+
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.delivery-note {
+    margin: 30px auto;
+    padding: 22px;
+
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.delivery-note h2 {
+    margin-bottom: 12px;
+
+    color: #e3cb94;
+
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1.4;
+}
+
+.delivery-note p {
+    color: rgba(255, 255, 255, 0.76);
+
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.delivery-note p + p {
+    margin-top: 9px;
+}
+
+.delivery-note strong {
+    color: #fff;
+}
+
+.thanks-button {
+    display: inline-block;
+
+    padding: 13px 25px;
+
+    color: #0c0b08;
+    background: #d9bd7d;
+
+    border: 1px solid #ead39e;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.thanks-button:hover,
+.thanks-button:focus-visible {
+    background: #ecd49d;
+    transform: translateY(-2px);
+}
+
+.thanks-closing {
+    margin-top: 25px;
+
+    color: rgba(255, 255, 255, 0.62);
+
+    font-size: 14px;
+    font-style: italic;
+    letter-spacing: 0.08em;
+}
+
+.thanks-copyright {
+    position: absolute;
+    left: 50%;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    z-index: 3;
+
+    transform: translateX(-50%);
+
+    color: rgba(255, 255, 255, 0.42);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+    .thanks-hero {
+        align-items: flex-start;
+        padding-top: max(24px, env(safe-area-inset-top));
+    }
+
+    .thanks-content {
+        padding: 28px 20px;
+    }
+
+    .thanks-content h1 {
+        font-size: 44px;
+    }
+
+    .delivery-note {
+        padding: 18px 15px;
+    }
+}

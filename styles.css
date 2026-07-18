@@ -17,19 +17,19 @@ body {
     overflow: hidden;
 }
 
+/* Full-screen picture */
 .hero {
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     height: 100svh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: #000;
     overflow: hidden;
 }
 
 .hero-image {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
     height: 100%;
@@ -37,6 +37,7 @@ body {
     object-position: center;
 }
 
+/* Layer over the picture */
 .hero-overlay {
     position: absolute;
     inset: 0;
@@ -44,91 +45,139 @@ body {
     pointer-events: none;
 }
 
+/* Dark fade behind the signup form */
 .hero-overlay::before {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    height: 42%;
+    height: 34%;
     background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0),
-        rgba(0, 0, 0, 0.45) 45%,
-        rgba(0, 0, 0, 0.88) 100%
+        rgba(0, 0, 0, 0.35) 40%,
+        rgba(0, 0, 0, 0.82) 100%
     );
     pointer-events: none;
 }
 
+/* Signup centered over the bottom of the picture */
 .signup {
-    position: absolute;
-    left: 50%;
-    bottom: max(48px, calc(env(safe-area-inset-bottom) + 38px));
-    transform: translateX(-50%);
-    width: min(92%, 440px);
-    z-index: 3;
+    position: absolute !important;
+    left: 50% !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: max(
+        42px,
+        calc(env(safe-area-inset-bottom) + 32px)
+    ) !important;
+
+    transform: translateX(-50%) !important;
+
+    width: min(92vw, 440px) !important;
+    max-width: 440px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    z-index: 10;
     pointer-events: auto;
 }
 
-.signup .ml-embedded {
-    width: 100%;
-    margin: 0 auto;
+/*
+   Force MailerLite's injected form to remain inside
+   our centered signup container.
+*/
+.signup .ml-embedded,
+.signup .ml-form-embedContainer,
+.signup .ml-form-align-center,
+.signup .ml-form-embedWrapper,
+.signup .ml-form-embedBody {
+    position: static !important;
+
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+
+    transform: none !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Prevent MailerLite from creating a floating side panel */
+.signup [class*="ml-form"] {
+    float: none !important;
 }
 
 .copyright {
     position: absolute;
     left: 50%;
-    bottom: max(10px, env(safe-area-inset-bottom));
+    bottom: max(9px, env(safe-area-inset-bottom));
     transform: translateX(-50%);
-    z-index: 3;
-    white-space: nowrap;
+
+    z-index: 11;
+
     color: rgba(255, 255, 255, 0.48);
     font-family: Georgia, "Times New Roman", serif;
     font-size: 11px;
     letter-spacing: 0.12em;
+    white-space: nowrap;
     text-shadow: 0 1px 5px #000;
+
     pointer-events: none;
 }
 
-/* Upright phones: show the entire image */
+/* Phones held upright */
 @media (orientation: portrait) {
     .hero-image {
-        width: 100%;
-        height: 100%;
         object-fit: contain;
         object-position: center;
     }
 
-    .signup {
-        width: min(92%, 400px);
-        bottom: max(50px, calc(env(safe-area-inset-bottom) + 40px));
+    .hero-overlay::before {
+        height: 40%;
     }
 
-    .hero-overlay::before {
-        height: 48%;
+    .signup {
+        width: calc(100vw - 28px) !important;
+        max-width: 400px !important;
+        bottom: max(
+            44px,
+            calc(env(safe-area-inset-bottom) + 34px)
+        ) !important;
     }
 }
 
-/* Smaller phones */
+/* Small phones */
 @media (max-width: 480px) {
     .signup {
-        width: calc(100% - 28px);
+        width: calc(100vw - 24px) !important;
     }
 
     .copyright {
-        font-size: 10px;
+        font-size: 9px;
     }
 }
 
 /* Short screens and landscape phones */
 @media (max-height: 650px) {
     .signup {
-        bottom: max(38px, calc(env(safe-area-inset-bottom) + 30px));
-        transform: translateX(-50%) scale(0.9);
+        bottom: max(
+            34px,
+            calc(env(safe-area-inset-bottom) + 26px)
+        ) !important;
+
+        transform: translateX(-50%) scale(0.88) !important;
         transform-origin: bottom center;
     }
 
     .copyright {
-        bottom: max(6px, env(safe-area-inset-bottom));
+        bottom: max(5px, env(safe-area-inset-bottom));
     }
 }

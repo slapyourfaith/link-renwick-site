@@ -7,14 +7,12 @@
 html,
 body {
     width: 100%;
-    height: 100%;
     background: #000;
 }
 
 body {
     min-height: 100vh;
     min-height: 100svh;
-    overflow: hidden;
 }
 
 .hero {
@@ -37,17 +35,27 @@ body {
     object-position: center;
 }
 
+.signup-section {
+    width: 100%;
+    background: #0A0F17;
+    padding: 50px 20px 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.signup-section .ml-embedded {
+    width: 100%;
+    max-width: 420px;
+}
+
 .copyright {
-    position: absolute;
-    left: 50%;
-    bottom: max(10px, env(safe-area-inset-bottom));
-    transform: translateX(-50%);
-    white-space: nowrap;
+    text-align: center;
     color: rgba(255, 255, 255, 0.42);
     font-family: Georgia, "Times New Roman", serif;
     font-size: 11px;
     letter-spacing: 0.12em;
-    text-shadow: 0 1px 5px #000;
+    padding: 20px;
+    background: #000;
 }
 
 /* Upright phones: show the entire image */
